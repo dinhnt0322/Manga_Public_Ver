@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@Asset/*": ["src/assets/*"],
+      "@Component/*": ["src/components/*"],
+      "@Service/*": ["src/service/*"],
+      "@Config/*": ["src/config/*"],
+      "@Screen/*": ["src/screens/*"],
+      "@Redux/*": ["src/redux/*"],
+      "@Helper/*": ["src/helpers/*"],
+      "@Constants/*": ["src/constants/*"],
+      "@Themes/*": ["src/themes/*"],
+      "@Graphql/*": ["src/graphql/*"],
+      "@Common/*": ["src/common/*"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}

@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "SayTruyen",
+    "slug": "saytruyen",
+    "privacy": "public",
+    "scheme": "saytruyen",
+    "platforms": ["ios", "android"],
+    "version": "6.0.0",
+    "orientation": "portrait",
+    "icon": "",
+    "splash": {
+      "image": "",
+      "resizeMode": "contain",
+      "backgroundColor": "#0085FF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "extra": {
+      "nevable": {
+        "projectId": {}
+      }
+    },
+    "notification": {
+      "icon": "",
+      "color": "#0085FF"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "io.saytruyen.ios",
+      "buildNumber": "601",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["saytruyen"],
+        "UIBackgroundModes": ["audio"]
+      }
+    },
+    "android": {
+      "package": "io.saytruyen.android",
+      "versionCode": 601,
+      "icon": "",
+      "adaptiveIcon": {
+        "foregroundImage": "",
+        "backgroundColor": "#0085FF",
+        "backgroundImage": ""
+      },
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "READ_PHONE_STATE",
+        "WAKE_LOCK",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#00000000"
+    }
+  }
+}
