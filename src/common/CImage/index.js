@@ -28,9 +28,6 @@ const checkCache = async (url, loadCache) => {
   if (!url) {
     return null;
   }
-
-  //neu CACHE_ENABLED=false thi tat chuc nang load cache
-  //neu CACHE_ENABLED=true thi chuc nang load cache se phuc thuoc props loadCache truyen vao
   let cache = !CACHE_ENABLED ? false : loadCache;
   if (!cache) {
     return { uri: url };
