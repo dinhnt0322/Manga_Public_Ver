@@ -5,6 +5,7 @@ import Util from '@Common/Util';
 import StylesCommon from '@Common/Styles';
 import CImage from '@Common/CImage';
 import moment from 'moment';
+import useSelectData from '@Common/SelectData';
 const { fontSize, viewStyle } = StylesCommon;
 const { screenSize, scale } = Util;
 const WIDTH_SCREEN = screenSize().width;
@@ -44,17 +45,19 @@ const listComment = [
 
 const DetailManga = React.memo(({ data = defaultData }) => {
   const { avatarSrc, authorName, dateTime, description } = data;
+
+  const { ColorData } = useSelectData();
   return (
     <View style={{ flex: 1, padding: scale(16) }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
-            backgroundColor: '#FFF',
+            backgroundColor: ColorData.surfaceColor,
             overflow: 'hidden',
             marginBottom: scale(10),
             paddingBottom: scale(10),
             borderBottomWidth: 1,
-            borderColor: '#4F4F4F',
+            borderColor: ColorData.secondaryColor,
           }}>
           <View>
             {!avatarSrc && !authorName && !dateTime ? null : (
@@ -88,6 +91,7 @@ const DetailManga = React.memo(({ data = defaultData }) => {
                     <Text
                       style={{
                         ...fontSize.txt14,
+                        color: ColorData.textColor,
                       }}>
                       {authorName}
                     </Text>
@@ -97,6 +101,7 @@ const DetailManga = React.memo(({ data = defaultData }) => {
                     <Text
                       style={{
                         ...fontSize.txt10,
+                        color: ColorData.textColor,
                       }}>
                       {moment.utc(moment()).format('DD/MM/YYYY')}
                     </Text>
@@ -110,7 +115,7 @@ const DetailManga = React.memo(({ data = defaultData }) => {
                 <Text
                   style={{
                     ...fontSize.txt15,
-                    color: '#000',
+                    color: ColorData.textColor,
                     paddingHorizontal: scale(16),
                     marginBottom: scale(14),
                   }}>
@@ -120,8 +125,8 @@ const DetailManga = React.memo(({ data = defaultData }) => {
             </View>
           </View>
         </View>
-        {listComment.map(item => {
-          return <CommentItem data={item} />;
+        {listComment.map((item, index) => {
+          return <CommentItem data={item} key={index} />;
         })}
       </ScrollView>
     </View>
@@ -129,8 +134,9 @@ const DetailManga = React.memo(({ data = defaultData }) => {
 });
 
 const CommentItem = React.memo(({ data }) => {
+  const { ColorData } = useSelectData();
   return (
-    <View style={styles.itemComment}>
+    <View style={[styles.itemComment]}>
       <CImage
         source={{
           uri: _.get(data, 'createdBy.avatar', ''),
@@ -139,10 +145,14 @@ const CommentItem = React.memo(({ data }) => {
         height={scale(25)}
         style={styles.avatar}
       />
-      <View style={styles.contentComment}>
+      <View style={[styles.contentComment, { backgroundColor: ColorData.surfaceColor }]}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.userName}>{_.get(data, 'createdBy.fullName', '')}</Text>
-          <Text style={styles.txtComment}>{_.get(data, 'message', '')}</Text>
+          <Text style={[styles.userName, { color: ColorData.textColor }]}>
+            {_.get(data, 'createdBy.fullName', '')}
+          </Text>
+          <Text style={[styles.txtComment, { color: ColorData.desColor }]}>
+            {_.get(data, 'message', '')}
+          </Text>
         </View>
       </View>
     </View>

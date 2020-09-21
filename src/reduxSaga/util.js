@@ -9,7 +9,7 @@ const themeColor = {
   },
   dark: {
     bgColor: '#121212',
-    textColor: '#E1E1E1',
+    textColor: '#FFF',
     surfaceColor: '#1E1E1E',
     desColor: '#a4a4a4',
     mainColor: '#33CCFF',

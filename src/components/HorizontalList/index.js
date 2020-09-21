@@ -9,7 +9,6 @@ import useSelectData from '@Common/SelectData';
 
 const { scale } = Util;
 const { fontSize, viewStyle } = StylesCommon;
-const coverImageUrl = `https://saytruyen.com/app/manga/uploads/covers/`;
 const defaultData = [
   {
     id: '4931f3bd8262b9b7b2e9d84f151ad696',
@@ -87,12 +86,7 @@ const Item = React.memo(({ data, topNum }) => {
               flex: 0.65,
             }}>
             {!!imageSrc && (
-              <CImage
-                source={{ uri: imageSrc }}
-                resizeMode={'cover'}
-                resizeMethod={'resize'}
-                style={{ flex: 1 }}
-              />
+              <CImage source={{ uri: imageSrc }} resizeMode={'cover'} style={{ flex: 1 }} />
             )}
             {!!topNum && (
               <View style={[styles.label, { backgroundColor: mainColor }]}>
@@ -101,11 +95,6 @@ const Item = React.memo(({ data, topNum }) => {
             )}
           </View>
           <View style={{ flex: 0.35, paddingTop: scale(8) }}>
-            {/* {!!dateTime && (
-                  <Text numberOfLines={1} style={[styles.textDateTime, { color: textColor }]}>
-                    {moment(createdAt).format('lll')}
-                  </Text>
-                )} */}
             {!!title && (
               <View style={styles.boxTitle}>
                 <Text numberOfLines={6} style={[styles.textTitle, { color: textColor }]}>

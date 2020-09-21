@@ -5,9 +5,11 @@ import Util from '@Common/Util';
 import StylesCommon from '@Common/Styles';
 import CImage from '@Common/CImage';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import useSelectData from '@Common/SelectData';
 import DetailManga from './component/DetailManga';
 import Header from './component/Header';
 import ListChapter from './component/ListChapter';
+
 const { fontSize, viewStyle } = StylesCommon;
 const { screenSize, scale } = Util;
 const WIDTH_SCREEN = screenSize().width;
@@ -20,37 +22,43 @@ const dataDetail = {
   genre: ['Action', 'Adventure', 'Supoermatural'],
   chapter: 24,
 };
+
+const TabBarRender = React.memo(props => {
+  const { ColorData } = useSelectData();
+  return (
+    <TabBar
+      {...props}
+      indicatorStyle={{
+        backgroundColor: ColorData.mainColor,
+        width: WIDTH_SCREEN / 2 - scale(80),
+        marginHorizontal: scale(40),
+      }}
+      style={{ backgroundColor: ColorData.surfaceColor }}
+      renderLabel={({ route, focused }) => {
+        return (
+          <Text
+            style={{
+              color: focused ? ColorData.mainColor : ColorData.textColor,
+              ...fontSize.txt13,
+              fontWeight: '500',
+            }}>
+            {route.title}
+          </Text>
+        );
+      }}
+    />
+  );
+});
 const HomeScreen = React.memo(({ data = dataDetail }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'Description', title: 'Thông tin' },
     { key: 'Chapter', title: 'Chapter' },
   ]);
+  const { ColorData } = useSelectData();
 
   const renderTabBar = props => {
-    return (
-      <TabBar
-        {...props}
-        indicatorStyle={{
-          backgroundColor: '#33CCFF',
-          width: WIDTH_SCREEN / 2 - scale(80),
-          marginHorizontal: scale(40),
-        }}
-        style={{ backgroundColor: '#FFF' }}
-        renderLabel={({ route, focused, color }) => {
-          return (
-            <Text
-              style={{
-                color: focused ? '#33CCFF' : '#333',
-                ...fontSize.txt13,
-                fontWeight: '500',
-              }}>
-              {route.title}
-            </Text>
-          );
-        }}
-      />
-    );
+    return <TabBarRender {...props} />;
   };
 
   const renderScene = SceneMap({
@@ -60,7 +68,7 @@ const HomeScreen = React.memo(({ data = dataDetail }) => {
 
   const { uri, title, chapter, genre } = data;
   return (
-    <View style={{ width: '100%', height: '100%', backgroundColor: '#FFF' }}>
+    <View style={{ width: '100%', height: '100%', backgroundColor: ColorData.bgColor }}>
       <Header />
       <View>
         <CImage

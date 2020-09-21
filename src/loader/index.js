@@ -6,8 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '@Screen/HomeScreen';
 import MangaDetailScreen from '@Screen/MangaDetail';
-import MangaReaderScreen from '@Screen/MangaReaderScreen';
-import MangaByTabScreen from '@Screen/MangaByTabScreen';
 import NavigationService from '@Service/NavigationService';
 
 import * as commonActions from '@ReduxSaga/actions/CommonActions';
@@ -40,8 +38,6 @@ const Apploader = React.memo(() => {
           <ProjectStack.Navigator headerMode={'none'}>
             <ProjectStack.Screen name={'HomeScreen'} component={HomeScreen} />
             <ProjectStack.Screen name={'MangaDetailScreen'} component={MangaDetailScreen} />
-            <ProjectStack.Screen name={'MangaReaderScreen'} component={MangaReaderScreen} />
-            <ProjectStack.Screen name={'MangaByTabScreen'} component={MangaByTabScreen} />
           </ProjectStack.Navigator>
           {/* Other Part */}
         </NavigationContainer>
