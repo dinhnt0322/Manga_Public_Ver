@@ -6,6 +6,7 @@ import Util from '@Common/Util';
 import StylesCommon from '@Common/Styles';
 import CImage from '@Common/CImage';
 import useSelectData from '@Common/SelectData';
+import NavigationService from '@Service/NavigationService';
 
 const { scale } = Util;
 const { fontSize, viewStyle } = StylesCommon;
@@ -57,6 +58,9 @@ const HorizontalList = ({ data = defaultData }) => {
 
 const Item = React.memo(({ data, topNum }) => {
   const { imageSrc, title, mainColor, textColor, surfaceColor } = data;
+  const onPress = useCallback(() => {
+    NavigationService.navigate('MangaDetailScreen');
+  }, []);
   return (
     <TouchableOpacity
       style={{
@@ -69,7 +73,8 @@ const Item = React.memo(({ data, topNum }) => {
         shadowRadius: 3.84,
         elevation: 5,
         alignSelf: 'center',
-      }}>
+      }}
+      onPress={onPress}>
       <View
         style={{
           overflow: 'hidden',

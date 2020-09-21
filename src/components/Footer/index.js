@@ -24,11 +24,7 @@ const Footer = React.memo(({ colorData, activeName }) => {
         },
       ]}>
       <View style={[viewStyle.row, viewStyle.align_end]}>
-        <Item
-          data={{ iconName: 'tag', iconType: 'Feather', ...colorData }}
-          isActive={activeName === 'MangaByTabScreen'}
-          name={'MangaByTabScreen'}
-        />
+        <Item data={{ iconName: 'tag', iconType: 'Feather', ...colorData }} />
         <Item data={{ iconName: 'layers', iconType: 'Feather', ...colorData }} />
       </View>
       <SpecialItem data={colorData} isActive={activeName === 'HomeScreen'} name={'HomeScreen'} />

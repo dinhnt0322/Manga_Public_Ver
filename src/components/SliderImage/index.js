@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import _ from 'lodash';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CImage from '@Common/CImage';
 import Util from '@Common/Util';
 import StyleCommon from '@Common/Styles';
+import NavigationService from '@Service/NavigationService';
 const { scale, screenSize } = Util;
 const { viewStyle } = StyleCommon;
 
@@ -50,6 +51,9 @@ const Skin01 = React.memo(({ data = defaultData, onPress }) => {
   const itemWidth = scale(300);
   const sliderHeight = scale(170);
 
+  const onPress = useCallback(() => {
+    NavigationService.navigate('MangaDetailScreen');
+  }, []);
   //Mix data
   if (data.length === 0) {
     return null;
@@ -73,20 +77,21 @@ const Skin01 = React.memo(({ data = defaultData, onPress }) => {
         }}
         renderItem={({ item, index }) => {
           return (
-            <View
+            <TouchableOpacity
               key={item.id}
               style={[
                 { width: itemWidth, height: sliderHeight },
                 viewStyle.align_center,
                 viewStyle.justify_center,
-              ]}>
+              ]}
+              onPress={onPress}>
               <CImage
                 source={{ uri: coverImageUrl + item.uri }}
                 resizeMode={'cover'}
                 width={itemWidth}
                 height={sliderHeight}
               />
-            </View>
+            </TouchableOpacity>
           );
         }}
       />
